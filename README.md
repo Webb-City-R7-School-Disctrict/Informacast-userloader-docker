@@ -1,5 +1,7 @@
 ## Build the image
-1. docker build -t icf_userloader:latest .
+```
+docker build -t icf_userloader:latest .
+```
 
 ---
 
