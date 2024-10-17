@@ -17,7 +17,7 @@ USER root
 WORKDIR /home/loaderuser
 
 # Create the crontab file with the desired command using git pull
-RUN echo "0 * * * * cd /home/loaderuser/Informacast-userloader-docker && git pull >> /proc/1/fd/1 && chmod +x /home/loaderuser/Informacast-userloader-docker/loader.sh >> /proc/1/fd/1 && /home/loaderuser/Informacast-userloader-docker/loader.sh --do-upload >> /proc/1/fd/1" > /etc/cron.d/loader-cron
+RUN echo "0 * * * * cd /home/loaderuser/Informacast-userloader-docker && /home/loaderuser/Informacast-userloader-docker/loader.sh --do-upload >> /proc/1/fd/1" > /etc/cron.d/loader-cron
 
 # Give execution rights on the cron job
 RUN chmod 0644 /etc/cron.d/loader-cron
