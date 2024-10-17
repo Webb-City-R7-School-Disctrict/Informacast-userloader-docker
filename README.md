@@ -1,28 +1,23 @@
+# Docker Compose Setup
+
+## Clone this repo
+  ```
+  git clone https://github.com/Webb-City-R7-School-Disctrict/Informacast-userloader-docker.git
+```
+
 ## Build the image
 ```
 docker build -t icf_userloader:latest .
 ```
 
----
+## Enter the repo directory
+```
+cd Informacast-userloader-docker
+```
 
-## Docker Compose
+## Place your config.groovy in this directory
 
-1. Clone this repo
-   ```
-   git clone https://github.com/Webb-City-R7-School-Disctrict/Informacast-userloader-docker.git
-   ```
-5. Enter the repo directory
-   ```
-   cd Informacast-userloader-docker
-   ```
-9. place your config.groovy in this directory
-10. start the compose
-    ```
-    docker-compose up -d
-    ```
-
----
-
-## Portainer Stack (WIP)
-
-1.
+## Start the compose
+ ```
+ docker-compose up -d
+ ```
