@@ -37,4 +37,4 @@ RUN git clone https://github.com/Webb-City-R7-School-Disctrict/Informacast-userl
     chmod +x /home/loaderuser/Informacast-userloader-docker/loader.sh
 
 # Run cron in the foreground and clone the repo on startup
-CMD ["bash", "-c", "[ ! -d /home/loaderuser/Informacast-User-Loader }; cron -f"]
+CMD ["bash", "-c", "[ ! -d /home/loaderuser/Informacast-User-Loader ] && cron -f"]
