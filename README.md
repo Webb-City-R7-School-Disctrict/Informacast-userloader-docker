@@ -27,3 +27,17 @@ https://help.wcr7.net/books/singlewire-informacast-and-intercom-hardware/page/bu
 |----------------------|---------------------------------------------------|
 | `GITHUB_REPO`        | Your GitHub private repository containing the userload and config file. (EXCLUDE "HTTPS://" example: github.com/Some-Username/Informacast-User-Loader.git) |
 | `GITHUB_TOKEN`       | Your GitHub personal access token for authentication to clone the private repository. |
+
+---
+
+## Docker Compose
+
+1. Clone this repo `git clone https://github.com/Webb-City-R7-School-Disctrict/Informacast-userloader-docker.git`
+2. Enter the repo directory `cd Informacast-userloader-docker`
+3. place your config.groovy in this directory
+4. start the compose `docker compose up -d`
+
+---
+
+## Portainer Stack (WIP)
+ 1.
