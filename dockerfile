@@ -16,10 +16,6 @@ RUN useradd -ms /bin/bash loaderuser
 USER root
 WORKDIR /home/loaderuser
 
-# Set a build-time variable for the GitHub token
-ARG GITHUB_TOKEN
-ARG GITHUB_REPO
-
 # Create the crontab file with the desired command using git pull
 RUN echo "0 * * * * cd /home/loaderuser/Informacast-User-Loader && git pull >> /proc/1/fd/1 && chmod +x /home/loaderuser/Informacast-User-Loader/loader.sh >> /proc/1/fd/1 && /home/loaderuser/Informacast-User-Loader/loader.sh --do-upload >> /proc/1/fd/1" > /etc/cron.d/loader-cron
 
@@ -35,5 +31,10 @@ RUN mkdir -p /var/run/ && \
     chown loaderuser:loaderuser /var/log/cron.log && \
     chown root:root /var/run && chmod 755 /var/run
 
+# Clone Repo
+RUN git clone https://github.com/Webb-City-R7-School-Disctrict/Informacast-userloader-docker.git /home/loaderuser/Informacast-User-Loader && \
+    chmod -R 777 /home/loaderuser/Informacast-User-Loader && \
+    chmod +x /home/loaderuser/Informacast-User-Loader/loader.sh
+
 # Run cron in the foreground and clone the repo on startup
-CMD ["bash", "-c", "[ ! -d /home/loaderuser/Informacast-User-Loader ] && git clone https://$GITHUB_TOKEN@$GITHUB_REPO /home/loaderuser/Informacast-User-Loader || echo 'Repo already exists'; chmod -R 777 /home/loaderuser/Informacast-User-Loader; chmod +x /home/loaderuser/Informacast-User-Loader/loader.sh; cron -f"]
+CMD ["bash", "-c", "[ ! -d /home/loaderuser/Informacast-User-Loader }; cron -f"]
