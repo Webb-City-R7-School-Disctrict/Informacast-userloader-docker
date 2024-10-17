@@ -15,9 +15,8 @@ services:
 #      - [host-port]:[container-port]
 #      - [host-port]:[container-port]/udp
     volumes:
-#    - userloader_data:/home/loaderuser
-    - ./config.groovy:/home/loaderuser/config.groovy
+    - ./config.groovy:/home/loaderuser/Informacast-userloader-docker/config.groovy
     restart: unless-stopped
     
-volumes:
-  userloader_data:
+#volumes:
+#  volume_name:
