@@ -1,0 +1,255 @@
+/**
+ * Specifies the top level configuration structure for the LDAP loader.  The 'config' data must be present in order for
+ * the loader to properly establish a connection and perform the desired sync with InformaCast Mobile.
+ */
+config {
+    /**
+     * Provides the necessary information to connect to your LDAP server
+     */
+    connection {
+        /**
+         * The host of the LDAP machine
+         */
+        host = "domaincontroller.lan"
+
+        /**
+         * The port to connect with
+         */
+        port = 636
+
+        /**
+         * Whether the connection should use SSL
+         */
+        useSSL = true
+
+        /**
+         * How long to wait before the connection should time out.  A value of 0 will wait forever.
+         */
+        connectTimeout = 0
+    }
+
+    /**
+     * Specifies the LDAP bind type.  This value should either be 'simple', 'anonymous', 'cram', 'digest', or 'kerberos'
+     * Whatever values are specified here will be the only values provided for that configuration.  For example, if
+     * kerberos is provided as the type, no data within the simple, anonymous, cram, or digest config will be used or
+     * validated.
+     */
+    type = "simple"
+
+    /**
+     * eDirectory deals with pagination a bit differently. If you are using eDirectory, set this value to true.
+     */
+    isEDirectory = false
+
+    /**
+     * The configuration for a simple LDAP bind
+     */
+    simple {
+        /**
+         * The connection's distinguished name
+         */
+        simpleConnectDn = "CN=Abraham Robinson,OU=Agency of Mainframe Computer Backup and PC Troubleshooting,DC=windowsldap,DC=lan"
+
+        /**
+         * The password for the DN.  For greater security, it is recommended to configure the password via the script
+         * (ie. "loader.bat --set-password") instead of using this field.
+         */
+        //simplePassword = "password"
+    }
+
+    /**
+     * The configuration for an anonymous LDAP bind
+     */
+    anonymous {
+        /**
+         * The connection's distinguished name
+         */
+        anonymousConnectDn = "CN=Abraham Robinson,OU=Agency of Mainframe Computer Backup and PC Troubleshooting,DC=windowsldap,DC=lan"
+    }
+
+    /**
+     * The configuration for a CRAM-MD5 authentication.  For more information, please see:
+     * http://docs.oracle.com/javase/jndi/tutorial/ldap/security/crammd5.html
+     */
+    cram {
+        /**
+         * A realm defines the namespace from which the authentication entity is selected.
+         */
+        cramSASLRealm = "windows"
+
+        /**
+         * The user name for the bind
+         */
+        cramUsername = "Abraham Robinson"
+
+        /**
+         * The password for the bind.  For greater security, it is recommended to configure the password via the script
+         * (ie. "loader.bat --set-password") instead of using this field.
+         */
+        //cramPassword = "password"
+    }
+
+    /**
+     * The configuration for a DIGEST-MD5 authentication.  For more information, please see:
+     * http://docs.oracle.com/javase/jndi/tutorial/ldap/security/digest.html
+     */
+    digest {
+        /**
+         * A realm defines the namespace from which the authentication entity is selected.
+         */
+        digestSASLRealm = "windows"
+
+        /**
+         * The user name for the bind
+         */
+        digestUsername = "Abraham Robinson"
+
+        /**
+         * The password for the bind.  For greater security, it is recommended to configure the password via the script
+         * (ie. "loader.bat --set-password") instead of using this field.
+         */
+        //digestPassword = "password"
+    }
+
+    /**
+     * The configuration necessary for Kerberos-based authentication to bind to an LDAP server.  For more information
+     * please see: http://docs.oracle.com/javase/jndi/tutorial/ldap/security/gssapi.html
+     */
+    kerberos {
+        /**
+         * The KDC host; please see http://docs.oracle.com/cd/E19683-01/806-4078/6jd6cjrvc/index.html
+         * for more information
+         */
+        kerberosKdcHost = "windowsldap.lan"
+
+        /**
+         * The KDC port; please see http://docs.oracle.com/cd/E19683-01/806-4078/6jd6cjrvc/index.html
+         * for more information
+         */
+        kerberosKdcPort = 88
+
+        /**
+         * Specifies the kerberos realm to bind to.  For more information please see:
+         * http://docs.oracle.com/cd/E23824_01/html/821-1456/planning-8.html
+         */
+        kerberosRealmName = "WINDOWSLDAP.LAN"
+
+        /**
+         * The username for the bind (optional)
+         */
+        kerberosUsername = "abraham.robinson"
+
+        /**
+         * The password for the bind (optional).  For greater security, it is recommended to configure the password via
+         * the script (ie. "loader.bat --set-password") instead of using this field.
+         */
+        //kerberosPassword = "password"
+    }
+
+    /**
+     * The user mapping to query for users and map them to tags
+     */
+    userMapping {
+        /**
+         * Specifies the search base for each search which defines the location in the directory from which the LDAP
+         * search begins.
+         */
+        baseDn = "DC=windowsldap,DC=lan"
+
+        /**
+         * If set to true, indicates a search of the base object and the entire sub-tree of which the base object
+         * distinguished name is the topmost object.  If set to false, indicates a search of objects immediately
+         * subordinate to the base object, but does not include the base object itself.
+         */
+        subtree = true
+
+        /**
+         * The base search filter that will be combined via an and query with the filter in each user mapping.  A filter
+         * allows certain entries in the sub-tree and excludes others.  This value is not required.
+         */
+        baseFilter = "(objectClass=*)"
+
+        /**
+         * The attributes format used to build the user's display name. Note the curly braces, {}, must be part of the
+         * formatting string. For example, the example below will store the user name as 'Washington, George'.
+         */
+        userNameFormat = "{sn}, {givenName}"
+
+        /**
+         * The attribute of a returned object that contains the user's full email
+         */
+        emailAttribute = "email"
+
+        /**
+         * The mobile phone number attributes that are capable of receiving SMS messages
+         */
+        mobileAttributes = ["mobile"]
+
+        /**
+         * Whether newly added SMS devices will be disabled by default.
+         */
+        disableNewSMS = false
+
+        /**
+         * The phone number attributes that are capable of being dialed
+         */
+        phoneCallAttributes = ["telephoneNumber"]
+
+        /**
+         * Whether newly added phone devices will be disabled by default.
+         */
+        disableNewPhoneCalls = false
+
+        /**
+         * The email attributes that should be sent notifications
+         */
+        emailAttributes = ["email"]
+
+        /**
+         * Whether newly added email devices will be disabled by default.
+         */
+        disableNewEmails = false
+
+        /**
+         * Specifies the paging size for large queries.  This value must be greater than, or equal to 1.
+         */
+        pagingSize = 1000
+    }
+
+    /**
+     * This configuration is used to filter search results and map tags defined on the webpages of InformaCast Mobile.
+     * If no filter is specified, it will only use the base filter. The tags must be an array of strings that map to
+     * the user loader's tag mappings within the API.
+     */
+    extendedUserMapping = [
+            [filter: "(memberOf=CN=Admins,CN=Users,DC=lan)", tags:["Admin", "Sender"]],
+            [filter: "(memberOf=CN=Students,CN=Users,DC=lan)", tags:["Student"]],
+            [filter: "(memberOf=CN=Security,CN=Users,DC=lan)", tags:["Security", "Sender"]]
+    ]
+
+    /**
+     * Fill in this configuration if you wish to enable automated csv file uploads to InformaCast Mobile
+     */
+    api {
+        /**
+         * The location of the API. This shouldn't be changed unless instructed to do so.
+         */
+        url = "https://api.icmobile.singlewire.com"
+
+        /**
+         * The load definition id. A load definition id can be generated by using the webadmin tool. Navigate to
+         * 'User Loaders', click the create button, git it a name such as 'User Loader', click Save, and copy the
+         * 'Identifier' field on the next page.
+         */
+        loadDefinitionId = "load definition id"
+
+         /**
+          * A valid API access token. An access token can be generated by using the webadmin tool. Navigate to
+          * 'Applications', click the create button, give it a name such as 'User Loader', click 'Save'. Next, click
+          * on the 'Tokens' tab, click the create button and follow the on-screen instructions. For greater security,
+          * it is recommended to configure the password via the script (ie. "loader.bat --set-token") instead of
+          * using this field.
+          */
+        //token = "user access token"
+    }
+}

@@ -1,0 +1,22 @@
+version: "3.9"
+
+#networks:
+#  network_name:
+#    external: true
+
+services:
+  userloader:
+    hostname: icf_userloader
+    image: icf_userloader:latest
+    env_file: "icf_userloader.env"
+#    networks:
+#    - network_name
+#    ports:
+#      - [host-port]:[container-port]
+#      - [host-port]:[container-port]/udp
+    volumes:
+    - userloader_data:/home/loaderuser
+    restart: unless-stopped
+    
+volumes:
+  userloader_data:
