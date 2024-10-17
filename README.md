@@ -1,3 +1,8 @@
+## Build the image
+1. docker build -t icf_userloader:latest .
+
+---
+
 ## Docker Compose
 
 1. Clone this repo ```git clone https://github.com/Webb-City-R7-School-Disctrict/Informacast-userloader-docker.git```
