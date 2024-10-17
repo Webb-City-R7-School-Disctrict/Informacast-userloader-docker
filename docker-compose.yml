@@ -15,7 +15,8 @@ services:
 #      - [host-port]:[container-port]
 #      - [host-port]:[container-port]/udp
     volumes:
-    - userloader_data:/home/loaderuser
+#    - userloader_data:/home/loaderuser
+    - ./config.groovy:/home/loaderuser/config.groovy
     restart: unless-stopped
     
 volumes:
