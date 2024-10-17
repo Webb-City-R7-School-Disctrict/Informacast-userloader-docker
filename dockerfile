@@ -32,7 +32,7 @@ RUN mkdir -p /var/run/ && \
     chown root:root /var/run && chmod 755 /var/run
 
 # Clone Repo
-RUN git clone https://github.com/Webb-City-R7-School-Disctrict/Informacast-userloader-docker.git && \
+RUN git clone https://github.com/Webb-City-R7-School-Disctrict/Informacast-userloader-docker.git /home/loaderuser/Informacast-userloader-docker && \
     chmod -R 777 /home/loaderuser/Informacast-userloader-docker && \
     chmod +x /home/loaderuser/Informacast-userloader-docker/loader.sh
 
