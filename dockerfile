@@ -36,6 +36,8 @@ RUN git clone https://github.com/Webb-City-R7-School-Disctrict/Informacast-userl
     chmod -R 777 /home/loaderuser/Informacast-userloader-docker && \
     chmod +x /home/loaderuser/Informacast-userloader-docker/loader.sh
 
-# Run cron in the foreground, set entrypoint
-CMD ["bash", "-c", "[ ! -d /home/loaderuser/Informacast-userloader-docker ] && cron -f"]
+# Set the default working directory
+WORKDIR /home/loaderuser/Informacast-userloader-docker
 
+# Run cron in the foreground
+CMD ["cron", "-f"]
