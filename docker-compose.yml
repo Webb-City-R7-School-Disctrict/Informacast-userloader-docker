@@ -8,7 +8,6 @@ services:
   userloader:
     hostname: icf_userloader
     image: icf_userloader:latest
-    env_file: "icf_userloader.env"
 #    networks:
 #    - network_name
 #    ports:
