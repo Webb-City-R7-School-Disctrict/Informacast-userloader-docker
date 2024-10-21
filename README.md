@@ -22,3 +22,5 @@ docker build -t icf_userloader:latest .
  ```
  docker-compose up -d
  ```
+---
+## For setting up in portainer, visit the [portainer branch](https://github.com/Webb-City-R7-School-Disctrict/Informacast-userloader-docker/tree/portainer)
