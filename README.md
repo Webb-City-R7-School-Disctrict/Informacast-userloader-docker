@@ -2,7 +2,7 @@
 
 ## Clone this repo
   ```
-  git clone https://github.com/Webb-City-R7-School-Disctrict/Informacast-userloader-docker.git
+  git clone https://github.com/Webb-City-R7-School-District/Informacast-userloader-docker.git
 ```
 
 ## Enter the repo directory
