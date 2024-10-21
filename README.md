@@ -33,7 +33,7 @@ docker exec -it informacast-userloader-docker-userloader-1 /bin/bash -c "cd /hom
 
 ## Using Portainer
 
-## Copy the link to this reop
+## Copy the link to this repository
 ```
 https://github.com/Webb-City-R7-School-District/Informacast-userloader-docker.git
 ```
