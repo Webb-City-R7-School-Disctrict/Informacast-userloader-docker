@@ -1,12 +1,12 @@
 # Use an official lightweight base image
-FROM ubuntu:20.04
+FROM debian:12.7-slim
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install required packages, including Java
 RUN apt-get update && \
-    apt-get install -y git cron curl openjdk-21-jre && \
+    apt-get install -y git cron curl openjdk-17-jre && \
     apt-get clean
 
 # Create a user for running the script
